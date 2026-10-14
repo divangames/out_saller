@@ -117,14 +117,42 @@ button:disabled { cursor: not-allowed; }
 .home-terms { margin-top: 40px; }
 .home-terms > header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
 .home-terms > header h2 { margin: 0; font-size: 26px; }
-.home-terms > header a { margin: 0; }
+.home-terms > footer { display: flex; justify-content: center; margin-top: 24px; }
 .home-terms .terms-steps { padding-bottom: 0; }
 .home-terms .terms-steps h3 { margin: 0; font-size: 16px; line-height: 1.4; }
-.home-hotline { padding: 28px 16px; margin-top: 24px; border-radius: 16px; background: white; text-align: center; }
-.home-hotline p { margin: 0 0 8px; color: #595959; font-size: 16px; }
-.home-hotline a { display: inline-block; padding: 8px 0; color: #222; font-size: clamp(22px, 4vw, 32px); font-weight: 700; text-decoration: none; white-space: nowrap; }
-.home-hotline a:hover { color: var(--brand); }
+.home-hotline { display: flex; align-items: center; gap: 24px; padding: 32px; margin-top: 32px; border: 1px solid #edcdd2; border-radius: 20px; background: #fff1f3; }
+.hotline-icon { display: grid; place-items: center; flex: 0 0 64px; height: 64px; border-radius: 18px; background: var(--brand); color: white; }
+.hotline-icon svg { width: 30px; height: 30px; }
+.hotline-copy { flex: 1; min-width: 0; }
+.hotline-copy h2 { margin: 0; font-size: 18px; }
+.hotline-copy p { margin: 6px 0 8px; color: #595959; font-size: 14px; line-height: 1.5; }
+.hotline-number { display: inline-block; padding-block: 4px; color: #222; font-size: clamp(22px, 3vw, 32px); font-weight: 800; text-decoration: none; white-space: nowrap; }
+.hotline-call { display: inline-flex; align-items: center; justify-content: center; gap: 16px; min-height: 48px; padding: 12px 22px; border-radius: 10px; background: #222; color: white; font-size: 15px; font-weight: 700; text-decoration: none; }
 .hero-cta { display: inline-flex; align-items: center; min-height: 44px; margin-top: 16px; padding: 8px 16px; border-radius: 8px; background: white; color: #111; font-size: 14px; font-weight: 700; text-decoration: none; }
+.home-terms .terms-cta { justify-content: center; gap: 24px; min-height: 50px; margin: 0; padding: 12px 28px; background: var(--brand); color: white; }
+.hero-cta, .hotline-call { transition: transform 140ms cubic-bezier(.22,1,.36,1), background-color 180ms ease, color 180ms ease; touch-action: manipulation; }
+.terms-cta span, .hotline-call span { transition: transform 180ms cubic-bezier(.22,1,.36,1); }
+@media (hover: hover) and (pointer: fine) {
+  .hero-cta:hover { transform: translateY(-2px); background: #ffe1e6; color: #9d1326; }
+  .home-terms .terms-cta:hover { background: #b5122b; color: white; }
+  .hotline-call:hover { transform: translateY(-2px); background: var(--brand); }
+  .terms-cta:hover span, .hotline-call:hover span { transform: translate(2px, -2px); }
+  .hotline-number:hover { color: var(--brand); }
+}
+.hero-cta:active, .hotline-call:active { transform: scale(.96); background: #a41128; color: white; }
+.hero-cta:focus-visible, .hotline-call:focus-visible, .hotline-number:focus-visible { outline: 3px solid var(--brand); outline-offset: 4px; }
+@media (max-width: 767px) {
+  .home-hotline { flex-wrap: wrap; gap: 16px; padding: 24px 20px; }
+  .hotline-icon { flex-basis: 48px; height: 48px; border-radius: 14px; }
+  .hotline-icon svg { width: 24px; height: 24px; }
+  .hotline-copy { flex-basis: calc(100% - 64px); }
+  .hotline-number { font-size: clamp(18px, 5.4vw, 24px); }
+  .hotline-call, .home-terms .terms-cta { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-cta, .hotline-call, .terms-cta span, .hotline-call span { transition: none; }
+  .hero-cta:hover, .hero-cta:active, .hotline-call:hover, .hotline-call:active, .terms-cta:hover span, .hotline-call:hover span { transform: none; }
+}
 .home-filter-stack { position: relative; top: auto; }
 .route-home .home-filter-stack .discount-dashboard { border: 0; border-radius: 12px; box-shadow: none; }
 .section-title h2, .route-home .section-title h2 { font-size: 26px; text-transform: none; }
