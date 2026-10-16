@@ -2,7 +2,7 @@ param([switch]$InspectOnly)
 $ErrorActionPreference = 'Stop'
 $projectDir = Split-Path -Parent $PSScriptRoot
 $source = Get-Content -LiteralPath (Join-Path $projectDir 'app.js') -Raw
-$seedSource = $source.Substring(0, $source.IndexOf('const duplicateSet'))
+$seedSource = $source.Substring(0, $source.IndexOf('const importedProducts'))
 $articles = [regex]::Matches($seedSource, '(?:makeProduct\("[^"\r\n]+",\s*"[^"\r\n]+",\s*|\["[^"\r\n]+",\s*)(\d+)') | ForEach-Object { $_.Groups[1].Value } | Sort-Object -Unique
 $response = Invoke-WebRequest -Uri 'https://outmaxshop.com/yml/all.yml' -TimeoutSec 90
 $xmlText = if ($response.Content -is [byte[]]) { [Text.Encoding]::UTF8.GetString($response.Content) } else { [string]$response.Content }

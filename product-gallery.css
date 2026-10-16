@@ -1,0 +1,46 @@
+/* Карусель и увеличенный просмотр наследуют геометрию и акценты бренда. */
+.gallery-panel { min-width: 0; }
+.gallery-panel .gallery-main { position: relative; }
+.gallery-stage { position: absolute; inset: 0; overflow: hidden; touch-action: pan-y pinch-zoom; }
+.gallery-image-button { display: block; width: 100%; height: 100%; padding: 0; border: 0; background: transparent; cursor: zoom-in; }
+.gallery-panel .gallery-main .gallery-image { width: 100%; height: 100%; object-fit: contain; }
+.gallery-image-button:focus-visible { outline-offset: -5px; }
+.gallery-arrow { display: grid; width: 44px; height: 44px; padding: 0; flex: 0 0 44px; place-items: center; border-radius: 10px; background: #fff; color: #111; }
+.gallery-arrow svg { width: 22px; height: 22px; }
+.gallery-arrow.is-prev svg { transform: rotate(180deg); }
+.gallery-arrow:active { transform: scale(.96); }
+.gallery-arrow:disabled { opacity: .3; cursor: default; }
+.photo-arrow { position: absolute; z-index: 2; top: calc(50% - 22px); box-shadow: 0 3px 14px #1112; }
+.photo-arrow.is-prev { left: 12px; }
+.photo-arrow.is-next { right: 12px; }
+.gallery-counter, .gallery-zoom-hint { position: absolute; bottom: 12px; display: grid; min-height: 32px; padding: 6px 10px; place-items: center; border-radius: 8px; background: #fff; color: #111; pointer-events: none; }
+.gallery-counter { left: 12px; font-size: 12px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.gallery-zoom-hint { right: 12px; }
+.gallery-zoom-hint svg { width: 20px; height: 20px; }
+.gallery-thumbnails { display: grid; min-width: 0; padding-top: 12px; grid-template-columns: 44px minmax(0, 1fr) 44px; align-items: center; gap: 8px; }
+.gallery-thumbnails .thumbs { min-width: 0; padding: 3px 0; overscroll-behavior-x: contain; }
+.gallery-thumbnails .thumb-arrow { background: var(--soft); }
+.gallery-thumbnails .thumbs button { scroll-snap-align: center; }
+.product-lightbox { width: min(1080px, calc(100vw - 48px)); max-width: none; max-height: calc(100dvh - 32px); padding: 16px; overflow-y: auto; border: 0; border-radius: 16px; background: #fff; color: var(--foreground); box-shadow: 0 16px 64px #0005; }
+.product-lightbox::backdrop { background: #111c; }
+.lightbox-header { display: flex; align-items: center; gap: 8px; padding: 0 0 12px; }
+.lightbox-header h2 { flex: 1; min-width: 0; margin: 0; font-size: 16px; line-height: 1.4; }
+.lightbox-header > button { display: grid; width: 44px; height: 44px; padding: 0; flex: 0 0 44px; place-items: center; border-radius: 10px; background: var(--soft); color: #111; }
+.lightbox-header svg { width: 22px; height: 22px; }
+.lightbox-header .lightbox-zoom[aria-pressed="true"] { background: var(--brand); color: var(--brand-ink, #fff); }
+.product-lightbox .gallery-main { height: min(65dvh, 720px); aspect-ratio: auto; border-radius: 12px; box-shadow: none; }
+.product-lightbox.is-zoomed .gallery-stage { overflow: auto; touch-action: auto; }
+.product-lightbox.is-zoomed .gallery-image-button { width: 200%; height: 200%; cursor: zoom-out; }
+.product-lightbox-open { overflow: hidden; }
+@media (hover: hover) and (pointer: fine) {
+  .gallery-arrow:not(:disabled):hover, .lightbox-header > button:hover { background: var(--brand); color: var(--brand-ink, #fff); }
+}
+@media (max-width: 767px) {
+  .photo-arrow.is-prev { left: 8px; }
+  .photo-arrow.is-next { right: 8px; }
+  .gallery-thumbnails { gap: 6px; padding-top: 8px; }
+  .product-lightbox { width: calc(100vw - 16px); max-height: calc(100dvh - 16px); padding: 10px; }
+  .lightbox-header { padding-bottom: 8px; }
+  .lightbox-header h2 { font-size: 13px; }
+  .product-lightbox .gallery-main { height: min(63dvh, 640px); }
+}

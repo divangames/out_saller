@@ -3,7 +3,7 @@ $ErrorActionPreference = 'Stop'
 $ProgressPreference = 'SilentlyContinue'
 $projectDir = Split-Path -Parent $PSScriptRoot
 $source = Get-Content -LiteralPath (Join-Path $projectDir 'app.js') -Raw
-$seedSource = $source.Substring(0, $source.IndexOf('const duplicateSet'))
+$seedSource = $source.Substring(0, $source.IndexOf('const importedProducts'))
 $articles = [regex]::Matches($seedSource, '(?:makeProduct\("[^"\r\n]+",\s*"[^"\r\n]+",\s*|\["[^"\r\n]+",\s*)(\d+)') | ForEach-Object { $_.Groups[1].Value } | Sort-Object -Unique
 $xmlText = if ($FeedPath) {
   [IO.File]::ReadAllText((Resolve-Path -LiteralPath $FeedPath), [Text.Encoding]::UTF8)
